@@ -47,14 +47,9 @@ def main():
     time.sleep(10)
 
     # Inisialisasi npm dengan scope
-    execute_command("npm init --scope=@WanXcoinG")
-    time.sleep(10)
-
-    # Meminta pengguna memasukkan nama paket atau membuat nama paket secara acak
-    package_name = input("Masukkan nama paket atau biarkan kosong untuk nama acak: ")
-    if not package_name:
-        package_name = "fake_package_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
-    execute_command(f"echo {package_name}")
+    process = subprocess.Popen(['npm', 'init', '--scope=@WanXcoinG'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE, text=True)
+    output, _ = process.communicate(input='fake_package_' + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5)))
+    print(output)
 
     # Delay 5 detik
     time.sleep(5)
