@@ -27,7 +27,7 @@ def main():
     execute_command("git branch -M main")
     time.sleep(10)
 
-    execute_command("git remote add origin https://github.com/WanXcodinG/ohayoo.git")
+    execute_command("git remote add origin https://github.com/WanXcodinG/testingg.git")
     time.sleep(10)
 
     # Push ke branch utama
