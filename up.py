@@ -2,9 +2,13 @@ import subprocess
 import time
 import random
 
-def execute_command(command):
+def execute_command(command, input_text=None):
     try:
-        subprocess.run(command, shell=True, check=True)
+        if input_text is not None:
+            proc = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True)
+            proc.communicate(input_text.encode())
+        else:
+            subprocess.run(command, shell=True, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing command '{command}': {e}")
 
@@ -48,20 +52,17 @@ def main():
 
     # Inisialisasi npm dengan scope
     execute_command("npm init --scope=@WanXcoinG")
-    time.sleep(10)
 
-    # Kirim nama pengguna acak menggunakan fake
+    # Tunggu 5 detik untuk memastikan inisialisasi selesai
+    time.sleep(5)
+
+    # Masukkan nama pengguna acak
     random_username = "fake_user_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
-    execute_command(f"echo {random_username}")
-    time.sleep(2)
+    execute_command("", input_text=random_username + "\n")
 
-    # Klik enter sebanyak 7 kali (menyetujui default)
+    # Klik enter tujuh kali (saya asumsikan ini untuk menyetujui default)
     for _ in range(7):
-        execute_command("echo.")
-        time.sleep(2)
-
-    # Delay 5 detik
-    time.sleep(10)
+        execute_command("", input_text="\n")
 
     # Publish dengan akses publik
     execute_command("npm publish --access public")
