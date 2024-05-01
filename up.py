@@ -55,7 +55,7 @@ def main():
     child = pexpect.spawn('npm init --scope=@WanXcoinG')
     
     # Menunggu prompt untuk nama paket
-    child.expect('package name:')
+    child.expect('package name: (@WanXcoinG/keheddkoplakidsd)')
 
     # Mengirimkan nama paket acak
     random_package_name = "fake_package_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
