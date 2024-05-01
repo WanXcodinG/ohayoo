@@ -50,9 +50,11 @@ def main():
     execute_command("npm init --scope=@WanXcoinG")
     time.sleep(10)
 
-    # Kirim nama pengguna acak menggunakan fake
-    random_username = "fake_user_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
-    execute_command(f"echo {random_username}")
+    # Meminta pengguna memasukkan nama paket atau membuat nama paket secara acak
+    package_name = input("Masukkan nama paket atau biarkan kosong untuk nama acak: ")
+    if not package_name:
+        package_name = "fake_package_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
+    execute_command(f"echo {package_name}")
 
     # Delay 5 detik
     time.sleep(5)
