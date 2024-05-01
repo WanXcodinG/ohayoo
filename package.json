@@ -1,16 +1,17 @@
 {
   "name": "kocak",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build",   
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
+    "team20": "^0.1.5",
     "next": "14.2.3"
   },
   "devDependencies": {
