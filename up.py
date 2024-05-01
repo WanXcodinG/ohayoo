@@ -47,16 +47,21 @@ def main():
     time.sleep(10)
 
     # Inisialisasi npm dengan scope
-    process = subprocess.Popen(['npm', 'init', '--scope=@WanXcoinG'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE, text=True)
-    output, _ = process.communicate(input='fake_package_' + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5)))
-    print(output)
+    execute_command("npm init --scope=@WanXcoinG")
+    time.sleep(10)
+
+    # Kirim nama pengguna acak menggunakan fake
+    random_username = "fake_user_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
+    execute_command(f"echo {random_username}")
+    time.sleep(2)
+
+    # Klik enter sebanyak 7 kali (menyetujui default)
+    for _ in range(7):
+        execute_command("echo.")
+        time.sleep(2)
 
     # Delay 5 detik
-    time.sleep(5)
-
-    # Klik enter tujuh kali (saya asumsikan ini untuk menyetujui default)
-    for _ in range(7):
-        execute_command("echo. | npm publish")
+    time.sleep(10)
 
     # Publish dengan akses publik
     execute_command("npm publish --access public")
