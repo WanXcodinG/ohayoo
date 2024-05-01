@@ -1,14 +1,11 @@
 import subprocess
 import time
 import random
+import pexpect
 
-def execute_command(command, input_text=None):
+def execute_command(command):
     try:
-        if input_text is not None:
-            proc = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True)
-            proc.communicate(input_text.encode())
-        else:
-            subprocess.run(command, shell=True, check=True)
+        subprocess.run(command, shell=True, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing command '{command}': {e}")
 
@@ -52,17 +49,27 @@ def main():
 
     # Inisialisasi npm dengan scope
     execute_command("npm init --scope=@WanXcoinG")
+    time.sleep(2)
 
-    # Tunggu 5 detik untuk memastikan inisialisasi selesai
+    # Membuat instance pexpect untuk menangani interaksi
+    child = pexpect.spawn('npm init --scope=@WanXcoinG')
+    
+    # Menunggu prompt untuk nama paket
+    child.expect('package name:')
+
+    # Mengirimkan nama paket acak
+    random_package_name = "fake_package_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
+    child.sendline(random_package_name)
+
+    # Menunggu proses selesai
+    child.wait()
+
+    # Delay 5 detik
     time.sleep(5)
-
-    # Masukkan nama pengguna acak
-    random_username = "fake_user_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
-    execute_command("", input_text=random_username + "\n")
 
     # Klik enter tujuh kali (saya asumsikan ini untuk menyetujui default)
     for _ in range(7):
-        execute_command("", input_text="\n")
+        execute_command("echo. | npm publish")
 
     # Publish dengan akses publik
     execute_command("npm publish --access public")
