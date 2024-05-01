@@ -50,9 +50,9 @@ def main():
     execute_command("npm init --scope=@WanXcoinG")
     time.sleep(10)
 
-    # Kirim kata-kata acak menggunakan fake
-    random_message = "Ini adalah pesan acak: " + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=10))
-    print(random_message)
+    # Kirim nama pengguna acak menggunakan fake
+    random_username = "fake_user_" + ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
+    execute_command(f"echo {random_username}")
 
     # Delay 5 detik
     time.sleep(5)
