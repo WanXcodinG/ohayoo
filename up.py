@@ -13,13 +13,13 @@ def main():
     execute_command("start cmd")
 
     execute_command("git add .")
-    time.sleep(10)
+    time.sleep(3)
 
     execute_command("git init")
-    time.sleep(10)
+    time.sleep(3)
 
     execute_command("git add README.md")
-    time.sleep(10)
+    time.sleep(3)
 
     execute_command('git commit -m "first commit"')
     time.sleep(10)
@@ -34,15 +34,11 @@ def main():
     execute_command("git push -u origin main")
     time.sleep(10)
 
-    # Tunggu 10 detik
-    time.sleep(10)
-
     # Tambahkan user npm
     execute_command("npm adduser")
-    time.sleep(10)
 
     # Tunggu 10 detik
-    time.sleep(20)
+    time.sleep(30)
 
     # Publish npm
     execute_command("npm publish")
